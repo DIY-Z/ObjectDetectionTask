@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+.git
+.vs
+Bin
+Libs
+ObjectDetectionTask/x64
