@@ -93,11 +93,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ThreadGetCamPic.cpp" />
     <QtRcc Include="ObjectDetectionTask.qrc" />
     <QtUic Include="ObjectDetectionTask.ui" />
     <QtMoc Include="ObjectDetectionTask.h" />
     <ClCompile Include="ObjectDetectionTask.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="ThreadGetCamPic.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
