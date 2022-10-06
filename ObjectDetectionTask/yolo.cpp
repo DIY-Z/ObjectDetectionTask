@@ -1,6 +1,7 @@
 #include "yolo.h"
 
-Net_config yolo_nets = { 0.5, 0.4, 320, 320,"D:\\repos\\yolov34-cpp-opencv-dnn\\yolov34-cpp-opencv-dnn\\coco.names", "D:\\repos\\yolov34-cpp-opencv-dnn\\yolov34-cpp-opencv-dnn\\yolo-fastest\\yolo-fastest-xl.cfg", "D:\\repos\\yolov34-cpp-opencv-dnn\\yolov34-cpp-opencv-dnn\\yolo-fastest\\yolo-fastest-xl.weights", "yolo-fastest" };
+//因为一开始项目属性时工作目录设为了..\Bin，而下面要打开的这两个文件不在Bin目录中，故需要按照下面这种方式进行
+Net_config yolo_nets = { 0.5, 0.4, 320, 320,"../ObjectDetectionTask/coco.names", "../ObjectDetectionTask/yolo-fastest/yolo-fastest-xl.cfg", "../ObjectDetectionTask/yolo-fastest/yolo-fastest-xl.weights", "yolo-fastest" };
 
 
 YOLO::YOLO(Net_config config)
