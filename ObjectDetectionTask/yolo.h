@@ -23,7 +23,7 @@ struct Net_config
 };
 
 extern Net_config yolo_nets;
-
+static int with_bounding_frame_num = 0;
 class YOLO
 {
 	public:
@@ -39,5 +39,6 @@ class YOLO
 		Net net;
 		void postprocess(const Mat& frame, const vector<Mat>& outs);
 		void drawPred(int classId, float conf, int left, int top, int right, int bottom, const Mat& frame);
+		
 };
 

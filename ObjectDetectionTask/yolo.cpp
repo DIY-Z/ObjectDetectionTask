@@ -67,6 +67,14 @@ void YOLO::postprocess(const Mat& frame, const vector<Mat>& outs)   // Remove th
 		this->drawPred(classIds[idx], confidences[idx], box.x, box.y,
 			box.x + box.width, box.y + box.height, frame);
 	}
+
+	if (!indices.empty()) {
+		//如果非空,则保存为图片
+		with_bounding_frame_num++;
+		int tmp = with_bounding_frame_num;
+		string img_name = "./img/" + to_string(tmp) + ".jpg";
+		imwrite(img_name, frame);
+	}
 }
 
 void YOLO::drawPred(int classId, float conf, int left, int top, int right, int bottom, const Mat& frame)   // Draw the predicted bounding box
