@@ -8,6 +8,8 @@ ObjectDetectionTask::ObjectDetectionTask(QWidget *parent)
 
     connect(&m_stThreadGetCamPic, &ThreadGetCamPic::sigSendCurImg, this, &ObjectDetectionTask::onFreshCurImg);
     connect(ui.openVideoBtn, &QPushButton::clicked, this, &ObjectDetectionTask::onOpenVideo);
+
+    connect(&m_stThreadGetCamPic, &ThreadGetCamPic::sendDetectionRes, this, &ObjectDetectionTask::onShowDetectionRes);
 }
 
 ObjectDetectionTask::~ObjectDetectionTask()
@@ -28,4 +30,12 @@ void ObjectDetectionTask::onOpenVideo()
 {
     //启动这个线程
     m_stThreadGetCamPic.start();
+}
+
+void ObjectDetectionTask::onShowDetectionRes(const QImage& img)
+{
+    m_imgSrcDetectionRes = img.copy();
+    m_img2ShowDetectionRes = m_imgSrcDetectionRes.scaled(ui.detectionResultLable->size(), Qt::KeepAspectRatio, Qt::FastTransformation);
+    m_pix2ShowDetectionRes = QPixmap::fromImage(m_img2ShowDetectionRes);
+    ui.detectionResultLable->setPixmap(m_pix2ShowDetectionRes);
 }
