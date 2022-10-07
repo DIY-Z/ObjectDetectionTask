@@ -1,4 +1,6 @@
 #include "ObjectDetectionTask.h"
+#include <QFileDialog>
+
 
 ObjectDetectionTask::ObjectDetectionTask(QWidget *parent)
     : QMainWindow(parent)
@@ -28,6 +30,13 @@ void ObjectDetectionTask::onFreshCurImg(const QImage& img)
 
 void ObjectDetectionTask::onOpenVideo()
 {
+    QString strFileName = QFileDialog::getOpenFileName(this,
+        tr("Open Video"), "/home/", tr("Image Files (*.mp4)"));
+    if (strFileName.isEmpty()) {
+        return;
+    }
+    m_stThreadGetCamPic.video_path = strFileName.toLocal8Bit().data();
+    
     //启动这个线程
     m_stThreadGetCamPic.start();
 }

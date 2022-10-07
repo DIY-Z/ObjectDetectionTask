@@ -17,6 +17,8 @@ public:
 	void run();
 	void objectDetection(const cv::Mat& frame);
 
+	string video_path;
+
 //signals是修饰信号函数的关键字
 signals:
 	void sigSendCurImg(const QImage& img);

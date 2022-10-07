@@ -24,7 +24,8 @@ void ThreadGetCamPic::run()
     cv::VideoCapture stVideoCapture;
     //bool bRet = stVideoCapture.open("D:\\FaceForensics++\\original_sequences\\youtube\\c23\\videos\\000.mp4");
     //TODO 这里后面记得要以弹出文件选择框的形式来选视频文件
-    bool bRet = stVideoCapture.open("D:\\PostGraduateCourses\\ComputerVision\\Task\\ch01_20180507080000.mp4");  //打开摄像头只需改成0
+    //bool bRet = stVideoCapture.open("D:\\PostGraduateCourses\\ComputerVision\\Task\\ch01_20180507080000.mp4");  //打开摄像头只需改成0
+    bool bRet = stVideoCapture.open(video_path);
     cv::Mat matTemp;
     cv::Mat view;                   //暂存读取到的视频帧图像,将其用于目标检测
     QImage imgTemp;
@@ -60,6 +61,8 @@ void ThreadGetCamPic::objectDetection(const cv::Mat& frame)
 {
     YOLO yolo_model(yolo_nets);
     yolo_model.detect(frame);
+    //BGR转为RGB
+    cvtColor(frame, frame, cv::COLOR_BGR2RGB);
     QImage imgTemp;
     imgTemp = QImage(frame.data, frame.cols, frame.rows, frame.step, QImage::Format_RGB888).copy();
     //
